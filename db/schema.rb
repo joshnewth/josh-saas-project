@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009161844) do
+ActiveRecord::Schema.define(version: 20171116181144) do
+
+  create_table "artifacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "key"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "artifacts", ["project_id"], name: "index_artifacts_on_project_id"
 
   create_table "members", force: :cascade do |t|
     t.integer  "tenant_id"
@@ -82,6 +92,7 @@ ActiveRecord::Schema.define(version: 20171009161844) do
     t.integer  "tenant_id"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.boolean  "is_admin"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
