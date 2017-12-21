@@ -16,7 +16,7 @@
       <% @projects.each do |project| %>
         <tr>
           
-          <td><%= link_to project.title %></td>
+          <td><%= link_to project.title, tenant_project_path(project, tenant_id: @tenant.id), class: 'main-link' %></td>
           <td><%= project.details %></td>
           <td><%= project.expected_completion_date %></td>
           <td>
@@ -39,4 +39,5 @@
 
 <%= link_to 'New Project', new_tenant_project_path(tenant_id: @tenant.id),
             :class => 'btn btn-primary' %>
+
 
